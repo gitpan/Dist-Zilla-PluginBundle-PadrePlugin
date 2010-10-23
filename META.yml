@@ -38,7 +38,7 @@ requires:
 resources:
   homepage: http://padre.perlide.org
   repository: http://svn.perlide.org/padre/trunk/Dist-Zilla-PluginBundle-PadrePlugin/
-version: 0.01
+version: 0.02
 x_Dist_Zilla:
   plugins:
     -

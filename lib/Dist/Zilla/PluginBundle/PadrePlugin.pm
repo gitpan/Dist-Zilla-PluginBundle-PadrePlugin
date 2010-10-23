@@ -1,6 +1,6 @@
 package Dist::Zilla::PluginBundle::PadrePlugin;
 BEGIN {
-  $Dist::Zilla::PluginBundle::PadrePlugin::VERSION = '0.01';
+  $Dist::Zilla::PluginBundle::PadrePlugin::VERSION = '0.02';
 }
 
 # ABSTRACT: Dist::Zilla plugin bundle for PadrePlugin
@@ -89,7 +89,7 @@ Dist::Zilla::PluginBundle::PadrePlugin - Dist::Zilla plugin bundle for PadrePlug
 
 =head1 VERSION
 
-version 0.01
+version 0.02
 
 =head1 DESCRIPTION
 
@@ -118,9 +118,9 @@ is equivalent to:
 	[ModuleBuild]
 	[LocaleMsgfmt]
 
-	You can specify the following options:
-		homepage
-		repository
+You can specify the following options:
+	homepage
+	repository
 
 =head1 AUTHOR
 
