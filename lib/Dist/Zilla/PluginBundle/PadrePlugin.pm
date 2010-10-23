@@ -1,0 +1,140 @@
+package Dist::Zilla::PluginBundle::PadrePlugin;
+BEGIN {
+  $Dist::Zilla::PluginBundle::PadrePlugin::VERSION = '0.01';
+}
+
+# ABSTRACT: Dist::Zilla plugin bundle for PadrePlugin
+
+use Moose;
+use Moose::Autobox;
+with 'Dist::Zilla::Role::PluginBundle';
+
+use Dist::Zilla::PluginBundle::Filter;
+use Dist::Zilla::PluginBundle::Basic;
+use Dist::Zilla::Plugin::CheckChangeLog;
+use Dist::Zilla::Plugin::CheckChangesTests;
+use Dist::Zilla::Plugin::CompileTests;
+use Dist::Zilla::Plugin::EOLTests;
+use Dist::Zilla::Plugin::PodWeaver;
+use Dist::Zilla::Plugin::PkgVersion;
+use Dist::Zilla::Plugin::MetaResources;
+use Dist::Zilla::Plugin::MetaConfig;
+use Dist::Zilla::Plugin::MetaJSON;
+use Dist::Zilla::Plugin::NextRelease;
+use Dist::Zilla::Plugin::PodSyntaxTests;
+use Dist::Zilla::Plugin::ModuleBuild;
+use Dist::Zilla::Plugin::LocaleMsgfmt;
+
+sub bundle_config {
+	my ( $self, $section ) = @_;
+	my $class = ( ref $self ) || $self;
+
+	my $arg = $section->{payload};
+
+	my @plugins = Dist::Zilla::PluginBundle::Filter->bundle_config(
+		{   name    => "$class/Basic",
+			payload => {
+				bundle => '@Basic',
+				remove => [qw(MakeMaker)],
+			}
+		}
+	);
+
+	my %meta_resources;
+	for my $resource qw(homepage repository) {
+		$meta_resources{$resource} = $arg->{$resource} if defined $arg->{$resource};
+	}
+
+	my %next_release_format;
+	$next_release_format{format} = defined $arg->{format} ? $arg->{format} : '%-6v %{yyyy.MM.dd}d';
+
+	# params
+
+	my $prefix = 'Dist::Zilla::Plugin::';
+	my @extra = map { [ "$class/$prefix$_->[0]" => "$prefix$_->[0]" => $_->[1] ] } (
+		[ CheckChangeLog    => {} ],
+		[ CheckChangesTests => {} ],
+		[ CompileTests      => {} ],
+		[ EOLTests          => {} ],
+		[ PodWeaver         => {} ],
+		[ PkgVersion        => {} ],
+		[ MetaResources     => \%meta_resources ],
+		[ MetaConfig        => {} ],
+		[ MetaJSON          => {} ],
+		[ NextRelease       => \%next_release_format ],
+		[ PodSyntaxTests    => {} ],
+		[ ModuleBuild       => {} ],
+		[ LocaleMsgfmt      => {} ],
+	);
+
+	push @plugins, @extra;
+
+	eval "require $_->[1]; 1;" or die for @plugins; ## no critic Carp
+
+	return @plugins;
+}
+
+__PACKAGE__->meta->make_immutable;
+no Moose;
+
+1;
+
+
+
+=pod
+
+=head1 NAME
+
+Dist::Zilla::PluginBundle::PadrePlugin - Dist::Zilla plugin bundle for PadrePlugin
+
+=head1 VERSION
+
+version 0.01
+
+=head1 DESCRIPTION
+
+Putting the following in your Padre::Plugin::PluginName dist.ini file:
+
+	[@PadrePlugin]
+
+is equivalent to:
+
+	[@Filter]
+	bundle = @Basic
+	remove = MakeMaker
+
+	[CheckChangeLog]
+	[CheckChangesTests]
+	[CompileTests]
+	[EOLTests]
+	[PodWeaver]
+	[PkgVersion]
+	[MetaResources]
+	[MetaConfig]
+	[MetaJSON]
+	[NextRelease]
+	format = %-6v %{yyyy.MM.dd}d
+	[PodSyntaxTests]
+	[ModuleBuild]
+	[LocaleMsgfmt]
+
+	You can specify the following options:
+		homepage
+		repository
+
+=head1 AUTHOR
+
+Ahmad M. Zawawi <ahmad.zawawi@gmail.com>
+
+=head1 COPYRIGHT AND LICENSE
+
+This software is copyright (c) 2010 by Ahmad M. Zawawi.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
+
+=cut
+
+
+__END__
+
