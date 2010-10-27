@@ -21,6 +21,7 @@ requires:
   Dist::Zilla::Plugin::CheckChangesTests: 0
   Dist::Zilla::Plugin::CompileTests: 0
   Dist::Zilla::Plugin::EOLTests: 0
+  Dist::Zilla::Plugin::LoadTests: 0
   Dist::Zilla::Plugin::LocaleMsgfmt: 0
   Dist::Zilla::Plugin::MetaConfig: 0
   Dist::Zilla::Plugin::MetaJSON: 0
@@ -38,7 +39,7 @@ requires:
 resources:
   homepage: http://padre.perlide.org
   repository: http://svn.perlide.org/padre/trunk/Dist-Zilla-PluginBundle-PadrePlugin/
-version: 0.02
+version: 0.03
 x_Dist_Zilla:
   plugins:
     -
@@ -145,10 +146,6 @@ x_Dist_Zilla:
       class: Dist::Zilla::Plugin::ModuleBuild
       name: ModuleBuild
       version: 4.102342
-    -
-      class: Dist::Zilla::Plugin::LocaleMsgfmt
-      name: LocaleMsgfmt
-      version: 1.100970
     -
       class: Dist::Zilla::Plugin::FinderCode
       name: ':InstallModules'
