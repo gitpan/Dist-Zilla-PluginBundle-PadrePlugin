@@ -1,6 +1,6 @@
 package Dist::Zilla::PluginBundle::PadrePlugin;
 BEGIN {
-  $Dist::Zilla::PluginBundle::PadrePlugin::VERSION = '0.05';
+  $Dist::Zilla::PluginBundle::PadrePlugin::VERSION = '0.06';
 }
 
 # ABSTRACT: Dist::Zilla plugin bundle for PadrePlugin
@@ -66,8 +66,7 @@ sub configure {
 	# Start adding plugins
 	$self->add_plugins(qw( CheckChangeLog CheckChangesTests ));
 
-	# TODO: no_display should be removed once CompileTests supports it
-	my $needs_display = [ 'needs_display' => '1', 'no_display' => '1' ];
+	my $needs_display = [ 'needs_display' => '1', ];
 	$self->add_plugins( [ 'CompileTests' => $needs_display ] );
 	$self->add_plugins( [ 'LoadTests'    => $needs_display ] );
 
@@ -95,14 +94,6 @@ sub configure {
 
 
 	# Add test dependencies
-	$self->add_plugins(
-		[   Prereqs => 'TestNeedsDisplayDeps' => {
-				-phase               => 'test',
-				-type                => 'requires',
-				'Test::NeedsDisplay' => '0'
-			}
-		],
-	);
 	$self->add_plugins(
 		[   Prereqs => 'TestMoreDeps' => {
 				-phase       => 'test',
@@ -148,7 +139,7 @@ Dist::Zilla::PluginBundle::PadrePlugin - Dist::Zilla plugin bundle for PadrePlug
 
 =head1 VERSION
 
-version 0.05
+version 0.06
 
 =head1 DESCRIPTION
 
@@ -163,7 +154,6 @@ is equivalent to:
 	remove = MakeMaker
 
 	needs_display  = 1
-	no_display     = 1	; will be removed once CompileTests supports it
 
 	[CheckChangeLog]
 	[CheckChangesTests]

@@ -40,7 +40,7 @@ requires:
 resources:
   homepage: http://padre.perlide.org
   repository: http://svn.perlide.org/padre/trunk/Dist-Zilla-PluginBundle-PadrePlugin/
-version: 0.05
+version: 0.06
 x_Dist_Zilla:
   plugins:
     -
@@ -110,7 +110,7 @@ x_Dist_Zilla:
     -
       class: Dist::Zilla::Plugin::CompileTests
       name: CompileTests
-      version: 1.103000
+      version: 1.103010
     -
       class: Dist::Zilla::Plugin::EOLTests
       name: EOLTests
