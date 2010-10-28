@@ -20,12 +20,13 @@ my %module_build_args = (
     'Ahmad M. Zawawi <ahmad.zawawi@gmail.com>'
   ],
   'dist_name' => 'Dist-Zilla-PluginBundle-PadrePlugin',
-  'dist_version' => '0.04',
+  'dist_version' => '0.05',
   'license' => 'perl',
   'module_name' => 'Dist::Zilla::PluginBundle::PadrePlugin',
   'recommends' => {},
   'recursive_test_files' => 1,
   'requires' => {
+    'Dist::Zilla' => '0',
     'Dist::Zilla::Plugin::CheckChangeLog' => '0',
     'Dist::Zilla::Plugin::CheckChangesTests' => '0',
     'Dist::Zilla::Plugin::CompileTests' => '0',
@@ -42,7 +43,7 @@ my %module_build_args = (
     'Dist::Zilla::Plugin::PodWeaver' => '0',
     'Dist::Zilla::PluginBundle::Basic' => '0',
     'Dist::Zilla::PluginBundle::Filter' => '0',
-    'Dist::Zilla::Role::PluginBundle' => '0',
+    'Dist::Zilla::Role::PluginBundle::Easy' => '0',
     'Moose' => '0',
     'Moose::Autobox' => '0'
   },

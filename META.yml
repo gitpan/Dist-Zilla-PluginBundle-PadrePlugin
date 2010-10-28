@@ -17,6 +17,7 @@ meta-spec:
   version: 1.4
 name: Dist-Zilla-PluginBundle-PadrePlugin
 requires:
+  Dist::Zilla: 0
   Dist::Zilla::Plugin::CheckChangeLog: 0
   Dist::Zilla::Plugin::CheckChangesTests: 0
   Dist::Zilla::Plugin::CompileTests: 0
@@ -33,13 +34,13 @@ requires:
   Dist::Zilla::Plugin::PodWeaver: 0
   Dist::Zilla::PluginBundle::Basic: 0
   Dist::Zilla::PluginBundle::Filter: 0
-  Dist::Zilla::Role::PluginBundle: 0
+  Dist::Zilla::Role::PluginBundle::Easy: 0
   Moose: 0
   Moose::Autobox: 0
 resources:
   homepage: http://padre.perlide.org
   repository: http://svn.perlide.org/padre/trunk/Dist-Zilla-PluginBundle-PadrePlugin/
-version: 0.04
+version: 0.05
 x_Dist_Zilla:
   plugins:
     -
@@ -109,7 +110,7 @@ x_Dist_Zilla:
     -
       class: Dist::Zilla::Plugin::CompileTests
       name: CompileTests
-      version: 1.101800
+      version: 1.103000
     -
       class: Dist::Zilla::Plugin::EOLTests
       name: EOLTests
