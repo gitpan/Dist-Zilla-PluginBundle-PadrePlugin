@@ -1,6 +1,6 @@
 package Dist::Zilla::PluginBundle::PadrePlugin;
 BEGIN {
-  $Dist::Zilla::PluginBundle::PadrePlugin::VERSION = '0.03';
+  $Dist::Zilla::PluginBundle::PadrePlugin::VERSION = '0.04';
 }
 
 # ABSTRACT: Dist::Zilla plugin bundle for PadrePlugin
@@ -49,14 +49,16 @@ sub bundle_config {
 	my %next_release_format;
 	$next_release_format{format} = defined $arg->{format} ? $arg->{format} : '%-6v %{yyyy.MM.dd}d';
 
+	my %needs_display = ( 'needs_display' => '1', 'no_display' => '1' );
+
 	# params
 
 	my $prefix = 'Dist::Zilla::Plugin::';
 	my @extra = map { [ "$class/$prefix$_->[0]" => "$prefix$_->[0]" => $_->[1] ] } (
 		[ CheckChangeLog    => {} ],
 		[ CheckChangesTests => {} ],
-		[ CompileTests      => {} ],
-		[ LoadTests         => { 'needs_display' => '1' } ],
+		[ CompileTests      => \%needs_display ],
+		[ LoadTests         => \%needs_display ],
 		[ EOLTests          => {} ],
 		[ PodWeaver         => {} ],
 		[ PkgVersion        => {} ],
@@ -91,7 +93,7 @@ Dist::Zilla::PluginBundle::PadrePlugin - Dist::Zilla plugin bundle for PadrePlug
 
 =head1 VERSION
 
-version 0.03
+version 0.04
 
 =head1 DESCRIPTION
 
@@ -105,6 +107,9 @@ is equivalent to:
 	[@Filter]
 	bundle = @Basic
 	remove = MakeMaker
+
+	needs_display  = 1
+	no_display     = 1
 
 	[CheckChangeLog]
 	[CheckChangesTests]

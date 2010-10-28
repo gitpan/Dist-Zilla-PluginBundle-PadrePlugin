@@ -62,7 +62,7 @@
          "url" : "http://svn.perlide.org/padre/trunk/Dist-Zilla-PluginBundle-PadrePlugin/"
       }
    },
-   "version" : "0.03",
+   "version" : "0.04",
    "x_Dist_Zilla" : {
       "plugins" : [
          {

@@ -20,7 +20,7 @@ my %module_build_args = (
     'Ahmad M. Zawawi <ahmad.zawawi@gmail.com>'
   ],
   'dist_name' => 'Dist-Zilla-PluginBundle-PadrePlugin',
-  'dist_version' => '0.03',
+  'dist_version' => '0.04',
   'license' => 'perl',
   'module_name' => 'Dist::Zilla::PluginBundle::PadrePlugin',
   'recommends' => {},
