@@ -20,7 +20,7 @@ my %module_build_args = (
     'Ahmad M. Zawawi <ahmad.zawawi@gmail.com>'
   ],
   'dist_name' => 'Dist-Zilla-PluginBundle-PadrePlugin',
-  'dist_version' => '0.06',
+  'dist_version' => '0.07',
   'license' => 'perl',
   'module_name' => 'Dist::Zilla::PluginBundle::PadrePlugin',
   'recommends' => {},
@@ -31,7 +31,6 @@ my %module_build_args = (
     'Dist::Zilla::Plugin::CheckChangesTests' => '0',
     'Dist::Zilla::Plugin::CompileTests' => '0',
     'Dist::Zilla::Plugin::EOLTests' => '0',
-    'Dist::Zilla::Plugin::LoadTests' => '0',
     'Dist::Zilla::Plugin::LocaleMsgfmt' => '0',
     'Dist::Zilla::Plugin::MetaConfig' => '0',
     'Dist::Zilla::Plugin::MetaJSON' => '0',
